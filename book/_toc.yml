@@ -4,14 +4,11 @@
 format: jb-book
 root: intro
 parts:
-- caption: 図形問題
-    numbered: True
-    caphters:
-        - file: geometry/vector
-    
-- caption: jupyter bookの例
-    numbered: True
+  - caption: 図形問題
     chapters:
-        - file: examples/markdown
-        - file: examples/notebooks
-        - file: examples/markdown-notebooks
+      - file: geometry/vector
+  - caption: jupyter bookの例
+    chapters:
+      - file: examples/markdown
+      - file: examples/notebooks
+      - file: examples/markdown-notebooksd
