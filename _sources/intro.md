@@ -1,11 +1,13 @@
-# Welcome to Soda Kentaro"s Jupyter Book
+# Welcome to Kentaro Algo Library
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
+アルゴリズムの勉強、競プロの備忘録につけています。  
+バグを発見した場合は、Issueまたはプルリクを投げていただけると助かります。  
 
-Check out the content pages bundled with this sample book to see more.
+- [github](https://github.com/nyankiti)
+- [atcoder](https://atcoder.jp/users/Nyankiti)
+- [twitter](https://twitter.com/Sokenbitya4124)
+
+Check out the content pages bundled with this Kentaro Library to see more.
 
 ```{tableofcontents}
 ```

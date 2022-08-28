@@ -13,7 +13,7 @@ kernelspec:
   name: python3
 ---
 
-# Notebooks with MyST Markdown
+# MyST Markdown と Notebooks を用いた例
 
 Jupyter Book also lets you write text-based notebooks using MyST Markdown.
 See [the Notebooks with MyST Markdown documentation](https://jupyterbook.org/file-types/myst-notebooks.html) for more detailed instructions.
