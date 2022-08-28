@@ -52,7 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Markdownの例" href="markdown.html" />
+    <link rel="next" title="vector" href="geometry/vector.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -89,6 +89,11 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/sochan_illust_have.png" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Kentaro Algo Library</h1>
@@ -107,20 +112,32 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  図形問題
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="markdown.html">
+  <a class="reference internal" href="geometry/vector.html">
+   vector
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  jupyter bookの例
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="examples/markdown.html">
    Markdownの例
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="notebooks.html">
+  <a class="reference internal" href="examples/notebooks.html">
    notebooksの例
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="markdown-notebooks.html">
-   MyST Markdown と Notebooks を用いた例
   </a>
  </li>
 </ul>
@@ -313,10 +330,16 @@ title="Print to PDF"
 </ul>
 <p>Check out the content pages bundled with this Kentaro Library to see more.</p>
 <div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">図形問題</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdownの例</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks.html">notebooksの例</a></li>
-<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">MyST Markdown と Notebooks を用いた例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geometry/vector.html">vector</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">jupyter bookの例</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/markdown.html">Markdownの例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/notebooks.html">notebooksの例</a></li>
 </ul>
 </div>
 </section>
@@ -348,10 +371,10 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="markdown.html" title="next page">
+    <a class='right-next' id="next-link" href="geometry/vector.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Markdownの例</p>
+        <p class="prev-next-title">vector</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
