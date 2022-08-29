@@ -11,4 +11,9 @@ parts:
     chapters:
       - file: examples/markdown
       - file: examples/notebooks
-      - file: examples/markdown-notebooksd
+      - file: examples/markdown-notebooks
+        sections:
+          - file: examples/section-example
+  - caption: Reference
+    chapters:
+      - file: reference.md
