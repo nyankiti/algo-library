@@ -4,12 +4,8 @@ FROM continuumio/anaconda3:latest
 RUN apt update && \
     apt install -y build-essential   
 
-# 追加でインストールしたい python モジュール
-RUN pip install jupyter-book && \
-    pip install ghp-import
-
-# ホスト PC の data フォルダへ繋ぐ入口です
-RUN mkdir /book
+# jupyter bookの追加
+RUN pip install jupyter-book
 
 # jupyter の起動パラメータを設定します
 EXPOSE 8888
@@ -19,5 +15,3 @@ CMD ["jupyter", "lab", \
      "--allow-root", \
      "--no-browser", \
      "--NotebookApp.token=''"]
-
-WORKDIR /root/book
