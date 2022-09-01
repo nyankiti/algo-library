@@ -4,17 +4,21 @@
 format: jb-book
 root: intro
 parts:
-  - caption: 図形問題
-    chapters:
-      - file: geometry/vector
-  - caption: グラフ
-    chapters:
-      - file: graph/basic
+  - chapters:
+      - file: geometry/index
+        sections:
+          - file: geometry/vector
+
+      - file: graph/index
+        sections:
+          - file: graph/topological_sort
+        
   - caption: 有名問題
     chapters:
       - file: dp/index
         sections:
           - file: dp/lcs
+
   - caption: jupyter bookの例
     chapters:
       - file: examples/markdown
