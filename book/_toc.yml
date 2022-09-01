@@ -5,7 +5,7 @@ format: jb-book
 root: intro
 parts:
   - caption: 競プロ
-  - chapters:
+    chapters:
       - file: geometry/index
         sections:
           - file: geometry/vector
