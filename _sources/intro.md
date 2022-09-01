@@ -6,14 +6,8 @@
 [![nyankiti](https://img.shields.io/endpoint?url=https%3A%2F%2Fatcoder-badges.now.sh%2Fapi%2Fatcoder%2Fjson%2Fnyankiti)](https://atcoder.jp/users/nyankiti)
 ```
 
-アルゴリズムの勉強、競プロの備忘録につけています。  
+アルゴリズム、数学の勉強の備忘録につけています。  
 バグを発見した場合は、Issue またはプルリクを投げていただけると助かります。
-
-- [github](https://github.com/nyankiti)
-- [atcoder](https://atcoder.jp/users/Nyankiti)
-- [twitter](https://twitter.com/Sokenbitya4124)
-
-Check out the content pages bundled with this Kentaro Library to see more.
 
 ```{tableofcontents}
 
