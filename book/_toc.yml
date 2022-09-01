@@ -4,6 +4,7 @@
 format: jb-book
 root: intro
 parts:
+  - caption: 競プロ
   - chapters:
       - file: geometry/index
         sections:
@@ -12,20 +13,14 @@ parts:
       - file: graph/index
         sections:
           - file: graph/topological_sort
-        
-  - caption: 有名問題
-    chapters:
+
       - file: dp/index
         sections:
           - file: dp/lcs
 
-  - caption: jupyter bookの例
+  - caption: 数学,統計
     chapters:
-      - file: examples/markdown
-      - file: examples/notebooks
-      - file: examples/markdown-notebooks
-        sections:
-          - file: examples/section-example
+
   - caption: Reference
     chapters:
       - file: reference.md
