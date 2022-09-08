@@ -13,6 +13,7 @@ parts:
       - file: graph/index
         sections:
           - file: graph/topological_sort
+          - file: graph/binary_search_tree
 
       - file: dp/index
         sections:
