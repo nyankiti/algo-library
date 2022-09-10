@@ -14,6 +14,7 @@ parts:
         sections:
           - file: graph/topological_sort
           - file: graph/binary_search_tree
+          - file: graph/bipartite_graph
 
       - file: dp/index
         sections:
