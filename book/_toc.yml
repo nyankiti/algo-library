@@ -15,6 +15,7 @@ parts:
           - file: graph/topological_sort
           - file: graph/binary_search_tree
           - file: graph/bipartite_graph
+          - file: graph/union_find
           - file: graph/segment_tree
           - file: graph/dijkstra
 
