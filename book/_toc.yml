@@ -18,6 +18,7 @@ parts:
           - file: graph/union_find
           - file: graph/segment_tree
           - file: graph/dijkstra
+          - file: graph/ford_fulkerson
 
       - file: dp/index
         sections:
