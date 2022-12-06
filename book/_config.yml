@@ -3,7 +3,7 @@
 
 title: Kentaro Algo Library
 author: Soda Kentaro
-logo: sochan_illust_have.png
+logo: assets/sochan_illust_have.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
