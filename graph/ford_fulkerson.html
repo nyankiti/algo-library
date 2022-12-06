@@ -215,7 +215,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Reference
+  その他
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -227,6 +227,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../self-intro.html">
    自己紹介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../enter-green.html">
+   非情報系学部4年のatcoder入緑記事(2022/12/6)
   </a>
  </li>
 </ul>
@@ -446,79 +451,79 @@ title="Print to PDF"
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">stdin</span><span class="p">,</span> <span class="n">setrecursionlimit</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import math
+from sys import stdin, setrecursionlimit
+from typing import List
 
-<span class="n">setrecursionlimit</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span>
-
-
-<span class="c1"># graphのadj要素をそれぞれ、{to: 行き先, cap: 辺の容量, rev: 逆のEdge</span>
-<span class="k">class</span> <span class="nc">Edge</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">to</span><span class="p">,</span> <span class="n">cap</span><span class="p">,</span> <span class="n">rev</span><span class="p">:</span> <span class="s2">&quot;Edge&quot;</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">to</span> <span class="o">=</span> <span class="n">to</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">cap</span> <span class="o">=</span> <span class="n">cap</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rev</span> <span class="o">=</span> <span class="n">rev</span>
+setrecursionlimit(10**6)
 
 
-<span class="k">class</span> <span class="nc">FordFulkerson</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">N</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Edge</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
-
-    <span class="k">def</span> <span class="nf">add_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
-        <span class="n">e</span> <span class="o">=</span> <span class="n">Edge</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="n">rev</span> <span class="o">=</span> <span class="n">Edge</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
-        <span class="n">e</span><span class="o">.</span><span class="n">rev</span> <span class="o">=</span> <span class="n">rev</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rev</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">goal</span><span class="p">,</span> <span class="n">F</span><span class="p">):</span>
-        <span class="c1"># ゴールに到着</span>
-        <span class="k">if</span> <span class="n">pos</span> <span class="o">==</span> <span class="n">goal</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">F</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">visited</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-
-        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="n">pos</span><span class="p">]:</span>
-            <span class="c1"># 容量 0 の辺は使えない</span>
-            <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">cap</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">continue</span>
-            <span class="c1"># 既に訪問した頂点に行かない</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">visited</span><span class="p">[</span><span class="n">e</span><span class="o">.</span><span class="n">to</span><span class="p">]:</span>
-                <span class="k">continue</span>
-            <span class="c1"># 目的地までのパスを探す</span>
-            <span class="n">flow</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">to</span><span class="p">,</span> <span class="n">goal</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">cap</span><span class="p">))</span>
-            <span class="c1"># フローを流せる場合、残余グラフの容量を flow だけ増減させる</span>
-            <span class="k">if</span> <span class="n">flow</span><span class="p">:</span>
-                <span class="n">e</span><span class="o">.</span><span class="n">cap</span> <span class="o">-=</span> <span class="n">flow</span>
-                <span class="n">e</span><span class="o">.</span><span class="n">rev</span><span class="o">.</span><span class="n">cap</span> <span class="o">+=</span> <span class="n">flow</span>
-                <span class="k">return</span> <span class="n">flow</span>
-        <span class="c1"># すべての辺を探索しても見つからなかった</span>
-        <span class="k">return</span> <span class="mi">0</span>
-
-    <span class="k">def</span> <span class="nf">max_flow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
-        <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">visited</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
-            <span class="n">F</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
-
-            <span class="c1"># フローを流せなくなったら操作終了</span>
-            <span class="k">if</span> <span class="n">F</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">break</span>
-            <span class="n">ans</span> <span class="o">+=</span> <span class="n">F</span>
-        <span class="k">return</span> <span class="n">ans</span>
+# graphのadj要素をそれぞれ、{to: 行き先, cap: 辺の容量, rev: 逆のEdge
+class Edge:
+    def __init__(self, to, cap, rev: &quot;Edge&quot;):
+        self.to = to
+        self.cap = cap
+        self.rev = rev
 
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">N</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-    <span class="n">ff</span> <span class="o">=</span> <span class="n">FordFulkerson</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
-        <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-        <span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">A</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">B</span><span class="o">-</span><span class="mi">1</span>
-        <span class="n">ff</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+class FordFulkerson:
+    def __init__(self, N):
+        self.size = N
+        self.graph: List[List[Edge]] = [[] for _ in range(N)]
 
-    <span class="nb">print</span><span class="p">(</span><span class="n">ff</span><span class="o">.</span><span class="n">max_flow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    def add_edge(self, a, b, c):
+        e = Edge(b, c, None)
+        rev = Edge(a, 0, e)
+        e.rev = rev
+        self.graph[a].append(e)
+        self.graph[b].append(rev)
+
+    def dfs(self, pos, goal, F):
+        # ゴールに到着
+        if pos == goal:
+            return F
+
+        self.visited[pos] = True
+
+        for e in self.graph[pos]:
+            # 容量 0 の辺は使えない
+            if e.cap == 0:
+                continue
+            # 既に訪問した頂点に行かない
+            if self.visited[e.to]:
+                continue
+            # 目的地までのパスを探す
+            flow = self.dfs(e.to, goal, min(F, e.cap))
+            # フローを流せる場合、残余グラフの容量を flow だけ増減させる
+            if flow:
+                e.cap -= flow
+                e.rev.cap += flow
+                return flow
+        # すべての辺を探索しても見つからなかった
+        return 0
+
+    def max_flow(self, s, t):
+        ans = 0
+        while True:
+            self.visited = [False] * self.size
+            F = self.dfs(s, t, math.inf)
+
+            # フローを流せなくなったら操作終了
+            if F == 0:
+                break
+            ans += F
+        return ans
+
+
+def main():
+    N, M = map(int, stdin.readline().split())
+    ff = FordFulkerson(N)
+    for _ in range(M):
+        A, B, C = map(int, stdin.readline().split())
+        A, B = A-1, B-1
+        ff.add_edge(A, B, C)
+
+    print(ff.max_flow(0, N-1))
 </pre></div>
 </div>
 </div>

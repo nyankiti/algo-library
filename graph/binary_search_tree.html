@@ -215,7 +215,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Reference
+  その他
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -227,6 +227,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../self-intro.html">
    自己紹介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../enter-green.html">
+   非情報系学部4年のatcoder入緑記事(2022/12/6)
   </a>
  </li>
 </ul>
@@ -487,178 +492,178 @@ title="Print to PDF"
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Node</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="kc">None</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Node(object):
+    def __init__(self, value: int) -&gt; None:
+        self.value = value
+        self.left = None
+        self.right = None
 
 
-<span class="k">class</span> <span class="nc">BinarySearchTree</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+class BinarySearchTree(object):
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mi">0</span>
+    def __init__(self) -&gt; None:
+        self.root = None
+        self.size = 0
         
-    <span class="k">def</span> <span class="nf">get_depth</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">def</span> <span class="nf">_get_depth</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="ow">and</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
-                <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">_get_depth</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">),</span> <span class="n">_get_depth</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span>
-            <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">_get_depth</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
-            <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">_get_depth</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">return</span> <span class="mi">1</span>
+    def get_depth(self) -&gt; None:
+        def _get_depth(node):
+            if node.left and node.right:
+                return max(_get_depth(node.left), _get_depth(node.right)) + 1
+            elif node.left:
+                return _get_depth(node.left) + 1
+            elif node.right:
+                return _get_depth(node.right) + 1
+            else:
+                return 1
         
-        <span class="k">return</span> <span class="n">_get_depth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+        return _get_depth(self.root)
         
 
-    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-            <span class="k">return</span>
+    def insert(self, value: int) -&gt; None:
+        self.size += 1
+        if self.root is None:
+            self.root = Node(value)
+            return
         
-        <span class="k">def</span> <span class="nf">_insert</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">Node</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        def _insert(node: Node, value: int) -&gt; Node:
+            if node is None:
+                return Node(value)
 
-            <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
-                <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">_insert</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">node</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">_insert</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">node</span>
+            if value &lt; node.value:
+                node.left = _insert(node.left, value)
+            else:
+                node.right = _insert(node.right, value)
+            return node
 
-        <span class="n">_insert</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        _insert(self.root, value)
 
-    <span class="k">def</span> <span class="nf">inorder</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">def</span> <span class="nf">_inorder</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">_inorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-                <span class="n">_inorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;inorder: &quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-        <span class="n">_inorder</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">()</span>
+    def inorder(self) -&gt; None:
+        def _inorder(node: Node) -&gt; None:
+            if node is not None:
+                _inorder(node.left)
+                print(node.value, end=&quot;&quot;)
+                _inorder(node.right)
+        print(&quot;inorder: &quot;, end=&quot;&quot;)
+        _inorder(self.root)
+        print()
         
-    <span class="k">def</span> <span class="nf">preorder</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">def</span> <span class="nf">_preorder</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-                <span class="n">_preorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
-                <span class="n">_preorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;preorder: &quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-        <span class="n">_preorder</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">()</span>
+    def preorder(self) -&gt; None:
+        def _preorder(node: Node) -&gt; None:
+            if node is not None:
+                print(node.value, end=&quot;&quot;)
+                _preorder(node.left)
+                _preorder(node.right)
+        print(&quot;preorder: &quot;, end=&quot;&quot;)
+        _preorder(self.root)
+        print()
         
-    <span class="k">def</span> <span class="nf">postorder</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">def</span> <span class="nf">_postorder</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">_postorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
-                <span class="n">_postorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;postorder: &quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-        <span class="n">_postorder</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">()</span>
+    def postorder(self) -&gt; None:
+        def _postorder(node: Node) -&gt; None:
+            if node is not None:
+                _postorder(node.left)
+                _postorder(node.right)
+                print(node.value, end=&quot;&quot;)
+        print(&quot;postorder: &quot;, end=&quot;&quot;)
+        _postorder(self.root)
+        print()
 
-    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="k">def</span> <span class="nf">_search</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">return</span> <span class="kc">False</span>
+    def search(self, value: int) -&gt; bool:
+        def _search(node: Node, value: int) -&gt; bool:
+            if node is None:
+                return False
 
-            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">value</span><span class="p">:</span>
-                <span class="k">return</span> <span class="kc">True</span>
-            <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span> <span class="o">&gt;</span> <span class="n">value</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">_search</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span> <span class="o">&lt;</span> <span class="n">value</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">_search</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">_search</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            if node.value == value:
+                return True
+            elif node.value &gt; value:
+                return _search(node.left, value)
+            elif node.value &lt; value:
+                return _search(node.right, value)
+        return _search(self.root, value)
 
-    <span class="k">def</span> <span class="nf">min_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
-        <span class="n">current</span> <span class="o">=</span> <span class="n">node</span>
-        <span class="k">while</span> <span class="n">current</span><span class="o">.</span><span class="n">left</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">left</span>
-        <span class="k">return</span> <span class="n">current</span>
+    def min_value(self, node: Node) -&gt; Node:
+        current = node
+        while current.left is not None:
+            current = current.left
+        return current
 
-    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="k">def</span> <span class="nf">_remove</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">node</span>
+    def remove(self, value: int) -&gt; None:
+        if self.size &gt; 0:
+            self.size -= 1
+        def _remove(node: Node, value: int) -&gt; Node:
+            if node is None:
+                return node
 
-            <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
-                <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">_remove</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
-                <span class="n">node</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">_remove</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span>
-                <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span>
+            if value &lt; node.value:
+                node.left = _remove(node.left, value)
+            elif value &gt; node.value:
+                node.right = _remove(node.right, value)
+            else:
+                if node.left is None:
+                    return node.right
+                elif node.right is None:
+                    return node.left
                 
-                <span class="c1"># 左右の子nodeが存在する場合、右側のtreeの最小値を持ってくる。</span>
-                <span class="n">temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_value</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
-                <span class="n">node</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">value</span>
-                <span class="c1"># 右側のtreeから最小値を消去する</span>
-                <span class="n">node</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">_remove</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">temp</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">node</span>
-        <span class="n">_remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+                # 左右の子nodeが存在する場合、右側のtreeの最小値を持ってくる。
+                temp = self.min_value(node.right)
+                node.value = temp.value
+                # 右側のtreeから最小値を消去する
+                node.right = _remove(node.right, temp.value)
+            return node
+        _remove(self.root, value)
 
             
-    <span class="c1"># 木の形がわかるように出力する(あまり綺麗ではない)</span>
-    <span class="k">def</span> <span class="nf">print_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">depth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_depth</span><span class="p">()</span>
-        <span class="c1"># 木の同じdepthにある枝を小さい順に格納する</span>
-        <span class="n">rows</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">depth</span><span class="p">)]</span>
+    # 木の形がわかるように出力する(あまり綺麗ではない)
+    def print_tree(self) -&gt; None:
+        depth = self.get_depth()
+        # 木の同じdepthにある枝を小さい順に格納する
+        rows = [[] for _ in range(depth)]
         
-        <span class="k">def</span> <span class="nf">_build_rows</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">current_depth</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">current_depth</span> <span class="o">&lt;</span> <span class="n">depth</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">_build_rows</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">current_depth</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-                    <span class="n">rows</span><span class="p">[</span><span class="n">current_depth</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-                    <span class="n">_build_rows</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">current_depth</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">_build_rows</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">current_depth</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-                    <span class="n">rows</span><span class="p">[</span><span class="n">current_depth</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
-                    <span class="n">_build_rows</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">current_depth</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">_build_rows</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        def _build_rows(node, current_depth):
+            if current_depth &lt; depth:
+                if node is not None:
+                    _build_rows(node.left, current_depth+1)
+                    rows[current_depth].append(node.value)
+                    _build_rows(node.right, current_depth+1)
+                else:
+                    _build_rows(None, current_depth+1)
+                    rows[current_depth].append(&quot; &quot;)
+                    _build_rows(None, current_depth+1)
+        _build_rows(self.root, 0)
         
             
-        <span class="c1"># 木の形になるように調整して出力</span>
-        <span class="n">width</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">depth</span>
-        <span class="n">center</span> <span class="o">=</span> <span class="n">width</span><span class="o">//</span><span class="mi">2</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
-            <span class="n">node_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-            <span class="n">node_space</span> <span class="o">=</span> <span class="n">width</span><span class="o">//</span><span class="p">(</span><span class="n">node_size</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-            <span class="c1"># print(f&quot;depth: {i}, node_size: {node_size}, node_space: {node_space}&quot;)</span>
-            <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">*</span><span class="n">node_space</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">()</span>
+        # 木の形になるように調整して出力
+        width = 2**depth
+        center = width//2
+        for i, row in enumerate(rows):
+            node_size = len(row)
+            node_space = width//(node_size+1)
+            # print(f&quot;depth: {i}, node_size: {node_size}, node_space: {node_space}&quot;)
+            for val in row:
+                print(&quot; &quot;*node_space, end=&quot;&quot;)
+                print(val, end=&quot;&quot;)
+            print()
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binary_tree</span> <span class="o">=</span> <span class="n">BinarySearchTree</span><span class="p">()</span>
-<span class="n">binary_tree</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">binary_tree</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
-<span class="n">binary_tree</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">binary_tree</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
-<span class="n">binary_tree</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">binary_tree</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">binary_tree</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">binary_tree</span><span class="o">.</span><span class="n">inorder</span><span class="p">()</span>
-<span class="n">binary_tree</span><span class="o">.</span><span class="n">preorder</span><span class="p">()</span>
-<span class="n">binary_tree</span><span class="o">.</span><span class="n">postorder</span><span class="p">()</span>
-<span class="c1"># print(binary_tree.search(4))</span>
-<span class="c1"># binary_tree.remove(6)</span>
-<span class="c1"># print(&#39;######## Remove&#39;)</span>
-<span class="c1"># binary_tree.inorder()</span>
-<span class="n">binary_tree</span><span class="o">.</span><span class="n">print_tree</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>binary_tree = BinarySearchTree()
+binary_tree.insert(3)
+binary_tree.insert(6)
+binary_tree.insert(5)
+binary_tree.insert(7)
+binary_tree.insert(1)
+binary_tree.insert(10)
+binary_tree.insert(2)
+binary_tree.inorder()
+binary_tree.preorder()
+binary_tree.postorder()
+# print(binary_tree.search(4))
+# binary_tree.remove(6)
+# print(&#39;######## Remove&#39;)
+# binary_tree.inorder()
+binary_tree.print_tree()
 </pre></div>
 </div>
 </div>

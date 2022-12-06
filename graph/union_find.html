@@ -215,7 +215,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Reference
+  その他
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -227,6 +227,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../self-intro.html">
    自己紹介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../enter-green.html">
+   非情報系学部4年のatcoder入緑記事(2022/12/6)
   </a>
  </li>
 </ul>
@@ -505,49 +510,49 @@ title="Print to PDF"
 あるノードが同じグループかどうかを検証するには、そのノードの根が同じかどうかを判定する</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">UnionFind</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rank</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class UnionFind:
+    def __init__(self, n) -&gt; None:
+        self.n = n
+        self.parent = [-1]*n
+        self.rank = [1]*n
 
-    <span class="c1"># 親を探す</span>
-    <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">v</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
+    # 親を探す
+    def find(self, v):
+        if self.parent[v] == -1:
+            return v
+        else:
+            return self.find(self.parent[v])
 
-    <span class="k">def</span> <span class="nf">is_same</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    def is_same(self, x, y):
+        return self.find(x) == self.find(y)
 
-    <span class="k">def</span> <span class="nf">unite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="n">x_root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">y_root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    def unite(self, x, y):
+        x_root = self.find(x)
+        y_root = self.find(y)
 
-        <span class="c1"># 既に同じ周濠に属している場合</span>
-        <span class="k">if</span> <span class="n">x_root</span> <span class="o">==</span> <span class="n">y_root</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
+        # 既に同じ周濠に属している場合
+        if x_root == y_root:
+            return False
 
-        <span class="c1"># 結合の際に、rank数が高い方を親にすることで、findメソットの計算量がO(logN)まで削減することができる</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">[</span><span class="n">x_root</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">[</span><span class="n">y_root</span><span class="p">]:</span>
-            <span class="n">x_root</span><span class="p">,</span> <span class="n">y_root</span> <span class="o">=</span> <span class="n">y_root</span><span class="p">,</span> <span class="n">x_root</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">[</span><span class="n">x_root</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">[</span><span class="n">y_root</span><span class="p">]:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">[</span><span class="n">y_root</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="n">x_root</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_root</span>
+        # 結合の際に、rank数が高い方を親にすることで、findメソットの計算量がO(logN)まで削減することができる
+        if self.rank[x_root] &gt; self.rank[y_root]:
+            x_root, y_root = y_root, x_root
+        if self.rank[x_root] == self.rank[y_root]:
+            self.rank[y_root] += 1
+        self.parent[x_root] = y_root
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">N</span><span class="p">,</span> <span class="n">Q</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-    <span class="n">uf_tree</span> <span class="o">=</span> <span class="n">UnionFind</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Q</span><span class="p">):</span>
-        <span class="n">t</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-        <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">uf_tree</span><span class="o">.</span><span class="n">unite</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">t</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">uf_tree</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">==</span> <span class="n">uf_tree</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Yes&quot;</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No&quot;</span><span class="p">)</span>
+def main():
+    N, Q = map(int, stdin.readline().split())
+    uf_tree = UnionFind(N)
+    for _ in range(Q):
+        t, u, v = map(lambda x: int(x)-1, stdin.readline().split())
+        if t == 0:
+            uf_tree.unite(u, v)
+        elif t == 1:
+            if uf_tree.find(u) == uf_tree.find(v):
+                print(&quot;Yes&quot;)
+            else:
+                print(&quot;No&quot;)
 </pre></div>
 </div>
 </div>
@@ -564,29 +569,29 @@ title="Print to PDF"
 <p>最小全域木(MST: Minimum spanning tree)を求めるためのアルゴリズム。全ての辺を、小さい順に並び替え、小さい方から、閉路を作らないようにUnion Findで管理しながら辺をつなげていくと、最小全域木が完成する。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">N</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-    <span class="n">graph</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
-    <span class="n">paths</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
-        <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-        <span class="n">graph</span><span class="p">[</span><span class="n">A</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">B</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">C</span><span class="p">])</span>
-        <span class="n">graph</span><span class="p">[</span><span class="n">B</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">A</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">C</span><span class="p">])</span>
-        <span class="n">paths</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">A</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">B</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">C</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def main():
+    N, M = map(int, stdin.readline().split())
+    graph = [[] for _ in range(N)]
+    paths = []
+    for _ in range(M):
+        A, B, C = map(int, stdin.readline().split())
+        graph[A-1].append([B-1, C])
+        graph[B-1].append([A-1, C])
+        paths.append([A-1, B-1, C])
 
-    <span class="c1"># Kruskal algorithm</span>
-    <span class="c1"># 辺を小さい順に並び替える</span>
-    <span class="n">paths</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-    <span class="n">uf_tree</span> <span class="o">=</span> <span class="n">UnionFind</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
-    <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="c1"># 小さい辺から順に、閉路を作らない場合に、その辺がMSTを作る辺として採用される。</span>
-    <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">:</span>
-        <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span> <span class="o">=</span> <span class="n">path</span>
-        <span class="k">if</span> <span class="n">uf_tree</span><span class="o">.</span><span class="n">is_same</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
-            <span class="n">ans</span> <span class="o">+=</span> <span class="n">C</span>
-            <span class="n">uf_tree</span><span class="o">.</span><span class="n">unite</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+    # Kruskal algorithm
+    # 辺を小さい順に並び替える
+    paths.sort(key=lambda x: x[2])
+    uf_tree = UnionFind(N)
+    ans = 0
+    # 小さい辺から順に、閉路を作らない場合に、その辺がMSTを作る辺として採用される。
+    for path in paths:
+        A, B, C = path
+        if uf_tree.is_same(A, B) == False:
+            ans += C
+            uf_tree.unite(A, B)
 
-    <span class="nb">print</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
+    print(ans)
 </pre></div>
 </div>
 </div>

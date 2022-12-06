@@ -215,7 +215,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Reference
+  その他
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -227,6 +227,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../self-intro.html">
    自己紹介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../enter-green.html">
+   非情報系学部4年のatcoder入緑記事(2022/12/6)
   </a>
  </li>
 </ul>
@@ -479,37 +484,37 @@ title="Print to PDF"
 <p>座標の問題が出てきた場合、それぞれの点をこのVectorクラスとして使うと便利</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from typing import List
 
 
-<span class="k">class</span> <span class="nc">Vec</span><span class="p">():</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+class Vec():
+    def __init__(self, x, y) -&gt; None:
+        self.x = x
+        self.y = y
     
-    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vec_A</span><span class="p">:</span> <span class="s2">&quot;Vec&quot;</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">Vec</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">+</span><span class="n">vec_A</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">+</span><span class="n">vec_A</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+    def __add__(self, vec_A: &quot;Vec&quot;):
+        return Vec(self.x+vec_A.x, self.y+vec_A.y)
 
-    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vec_A</span><span class="p">:</span> <span class="s2">&quot;Vec&quot;</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">Vec</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">-</span><span class="n">vec_A</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">-</span><span class="n">vec_A</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+    def __sub__(self, vec_A: &quot;Vec&quot;):
+        return Vec(self.x-vec_A.x, self.y-vec_A.y)
 
-    <span class="c1"># 外積 (cross product)</span>
-    <span class="k">def</span> <span class="nf">cross</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vec_A</span><span class="p">:</span> <span class="s2">&quot;Vec&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">*</span><span class="n">vec_A</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">vec_A</span><span class="o">.</span><span class="n">x</span>
+    # 外積 (cross product)
+    def cross(self, vec_A: &quot;Vec&quot;) -&gt; int:
+        return self.x*vec_A.y - self.y * vec_A.x
     
-    <span class="c1"># 内積 (dot product)</span>
-    <span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vec_A</span><span class="p">:</span> <span class="s2">&quot;Vec&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">*</span><span class="n">vec_A</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">*</span><span class="n">vec_A</span><span class="o">.</span><span class="n">y</span>
+    # 内積 (dot product)
+    def dot(self, vec_A: &quot;Vec&quot;) -&gt; int:
+        return self.x*vec_A.x + self.y*vec_A.y
 
-    <span class="c1"># counter clock wise</span>
-    <span class="k">def</span> <span class="nf">ccw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vec_A</span><span class="p">:</span> <span class="s2">&quot;Vec&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="n">area</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">vec_A</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">area</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># ccw 反時計回り</span>
-            <span class="k">return</span> <span class="mi">1</span>
-        <span class="k">elif</span> <span class="n">area</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># cw 時計回り</span>
-            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>  <span class="c1"># collinear 一直線上</span>
-            <span class="k">return</span> <span class="mi">0</span>
+    # counter clock wise
+    def ccw(self, vec_A: &quot;Vec&quot;) -&gt; int:
+        area = self.cross(vec_A)
+        if area &gt; 0:  # ccw 反時計回り
+            return 1
+        elif area &lt; 0:  # cw 時計回り
+            return -1
+        else:  # collinear 一直線上
+            return 0
 </pre></div>
 </div>
 </div>
@@ -519,12 +524,12 @@ title="Print to PDF"
 <p>二つのベクトルの外積によって求まる、2ベクトルが作る平行四辺形の面積が、正 or 負 によって、二つのベクトルの位置関係(時計周りか、反時計回りか)を返す</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vecA</span> <span class="o">=</span> <span class="n">Vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">vecB</span> <span class="o">=</span> <span class="n">Vec</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>vecA = Vec(1, 4)
+vecB = Vec(2, 3)
 
-<span class="n">added</span> <span class="o">=</span> <span class="n">vecA</span> <span class="o">-</span> <span class="n">vecB</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">added</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">added</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">vecA</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">vecB</span><span class="p">))</span>
+added = vecA - vecB
+print(added.x, added.y)
+print(vecA.cross(vecB))
 </pre></div>
 </div>
 </div>
