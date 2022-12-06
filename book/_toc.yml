@@ -28,7 +28,8 @@ parts:
     chapters:
       - file: ml/preprocessing
 
-  - caption: Reference
+  - caption: その他
     chapters:
       - file: reference.md
       - file: self-intro.md
+      - file: enter-green.md
