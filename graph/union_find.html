@@ -446,6 +446,11 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parentsize">
+   parent配列を用いたグループのsize管理
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id1">
    Union Findを使った有名アルゴリズム
   </a>
@@ -479,6 +484,11 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#union-by-size">
    Union by size
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parentsize">
+   parent配列を用いたグループのsize管理
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -518,13 +528,18 @@ title="Print to PDF"
 
     # 親を探す
     def find(self, v):
-        if self.parent[v] == -1:
+        if self.parent[v] &lt; 0:
             return v
         else:
-            return self.find(self.parent[v])
+            self.parent[v] = self.find(self.parent[v])
+            return self.parent[v]
 
     def is_same(self, x, y):
         return self.find(x) == self.find(y)
+
+    # 指定のノードを含むグループのサイズを返す
+    def size(self, v):
+        return -self.parent[self.find(v)]
 
     def unite(self, x, y):
         x_root = self.find(x)
@@ -539,6 +554,9 @@ title="Print to PDF"
             x_root, y_root = y_root, x_root
         if self.rank[x_root] == self.rank[y_root]:
             self.rank[y_root] += 1
+        
+        # uniteするグループの数を取り込むことでグループ数を記録する
+        self.parent[y_root] += self.parent[x_root]
         self.parent[x_root] = y_root
 
 def main():
@@ -561,6 +579,11 @@ def main():
 <h2>Union by size<a class="headerlink" href="#union-by-size" title="Permalink to this headline">#</a></h2>
 <p>根付き木同士を結合する際、**大きい方の木に、小さい方を取り組むように結合(union by size)**すると、<br />
 木が大きなることが避けられ、O(logN)時間で、ノードの根を取得することができる</p>
+</section>
+<section id="parentsize">
+<h2>parent配列を用いたグループのsize管理<a class="headerlink" href="#parentsize" title="Permalink to this headline">#</a></h2>
+<p>以下のブログを参考に、グループのルートノードにマイナスでグループのサイズを保持するテクニックを用いた。<br />
+<a class="reference external" href="https://yaakublog.com/union_find">https://yaakublog.com/union_find</a></p>
 </section>
 <section id="id1">
 <h2>Union Findを使った有名アルゴリズム<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
