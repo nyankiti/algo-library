@@ -578,12 +578,12 @@ def is_bipartite(graph):
                     return False
                 continue
 
-            # 1-current_colorとすると、1と
+            # 隣接成分 が 今の色と逆の色(1-current_color)であることを判定
             if dfs(adjacent, 1-current_color) == False:
                 return False
         return True
 
-    # 全ての辺を探索する
+    # 全ての辺を探索する(非連結成分も考えて、dfsをfor分で回す必要がある)
     for v in range(N):
         if colors[v] != -1:
             continue
