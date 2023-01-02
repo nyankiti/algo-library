@@ -7,4 +7,4 @@
 
 - [github](https://github.com/nyankiti)
 - [atcoder](https://atcoder.jp/users/Nyankiti)
-- [twitter](https://twitter.com/Sokenbitya4124)
+- [twitter](https://twitter.com/soken_nowi)
