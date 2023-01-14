@@ -198,6 +198,11 @@ const thebe_selector_output = ".output, .cell_output"
      LCS(Longest Common Subsequence)
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dp/interval_dp.html">
+     区間DP(Interval DP)
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -542,48 +547,48 @@ title="Print to PDF"
 <p>確定済み頂点と接する頂点の中で、最もコストが低い頂点を探す 2 のステップにおいて、計算量削減のため、heapq(優先度付きキュー)を用いている</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import math
-from sys import stdin, setrecursionlimit
-import heapq
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">stdin</span><span class="p">,</span> <span class="n">setrecursionlimit</span>
+<span class="kn">import</span> <span class="nn">heapq</span>
 
-setrecursionlimit(10**6)
-
-
-def dijkstra(graph):
-    N = len(graph)
-    shortest_distance = [math.inf]*N
-    kakutei = [False]*N
-    shortest_distance[0] = 0
-    # 現在確定済みの頂点から行けるノードの中で最もコストが低いノードを、heapq(優先度付きキュー)で管理する
-    heap_data = []
-    # heapqは先頭のデータをkeyとして大小比較を行なってくれる
-    heapq.heappush(heap_data, (shortest_distance[0], 0))
-    while len(heap_data) &gt; 0:
-        curr_cost, pos = heapq.heappop(heap_data)
-
-        if kakutei[pos]:
-            continue
-
-        kakutei[pos] = True
-        for adj, adj_cost in graph[pos]:
-            if shortest_distance[adj] &gt;= curr_cost+adj_cost:
-                shortest_distance[adj] = curr_cost+adj_cost
-                heapq.heappush(heap_data, (curr_cost+adj_cost, adj))
-    return shortest_distance
+<span class="n">setrecursionlimit</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span>
 
 
-def main():
-    N, M = map(int, stdin.readline().split())
-    graph = [[] for _ in range(N)]
-    for _ in range(M):
-        A, B, C = map(int, stdin.readline().split())
-        # [隣接先, cost] と重みを扱うしていく
-        graph[A-1].append([B-1, C])
-        graph[B-1].append([A-1, C])
+<span class="k">def</span> <span class="nf">dijkstra</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+    <span class="n">shortest_distance</span> <span class="o">=</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span><span class="o">*</span><span class="n">N</span>
+    <span class="n">kakutei</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span><span class="p">]</span><span class="o">*</span><span class="n">N</span>
+    <span class="n">shortest_distance</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># 現在確定済みの頂点から行けるノードの中で最もコストが低いノードを、heapq(優先度付きキュー)で管理する</span>
+    <span class="n">heap_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># heapqは先頭のデータをkeyとして大小比較を行なってくれる</span>
+    <span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">heap_data</span><span class="p">,</span> <span class="p">(</span><span class="n">shortest_distance</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">heap_data</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">curr_cost</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">heapq</span><span class="o">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">heap_data</span><span class="p">)</span>
 
-    shortest_distance = dijkstra(graph)
-    for val in shortest_distance:
-        print(val if val != math.inf else -1)
+        <span class="k">if</span> <span class="n">kakutei</span><span class="p">[</span><span class="n">pos</span><span class="p">]:</span>
+            <span class="k">continue</span>
+
+        <span class="n">kakutei</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">for</span> <span class="n">adj</span><span class="p">,</span> <span class="n">adj_cost</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">pos</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">shortest_distance</span><span class="p">[</span><span class="n">adj</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">curr_cost</span><span class="o">+</span><span class="n">adj_cost</span><span class="p">:</span>
+                <span class="n">shortest_distance</span><span class="p">[</span><span class="n">adj</span><span class="p">]</span> <span class="o">=</span> <span class="n">curr_cost</span><span class="o">+</span><span class="n">adj_cost</span>
+                <span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">heap_data</span><span class="p">,</span> <span class="p">(</span><span class="n">curr_cost</span><span class="o">+</span><span class="n">adj_cost</span><span class="p">,</span> <span class="n">adj</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">shortest_distance</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">N</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+        <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+        <span class="c1"># [隣接先, cost] と重みを扱うしていく</span>
+        <span class="n">graph</span><span class="p">[</span><span class="n">A</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">B</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">C</span><span class="p">])</span>
+        <span class="n">graph</span><span class="p">[</span><span class="n">B</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">A</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">C</span><span class="p">])</span>
+
+    <span class="n">shortest_distance</span> <span class="o">=</span> <span class="n">dijkstra</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">shortest_distance</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">val</span> <span class="k">if</span> <span class="n">val</span> <span class="o">!=</span> <span class="n">math</span><span class="o">.</span><span class="n">inf</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

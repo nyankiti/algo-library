@@ -200,6 +200,11 @@ const thebe_selector_output = ".output, .cell_output"
      LCS(Longest Common Subsequence)
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dp/interval_dp.html">
+     区間DP(Interval DP)
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -520,59 +525,59 @@ N = 5 の時、 セグメント木のサイズは <span class="math notranslate 
 <p>セグメント木で区間の最大値を記録しておく問題</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class SegmentTree:
-    def __init__(self):
-        self.dat = []
-        self.size = 1
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SegmentTree</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dat</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mi">1</span>
 
-    def init(self, N):
-        self.size = 1
-        while self.size &lt; N:
-            self.size *= 2
-        # Aは最初全ての要素が0
-        self.dat = [0]*(self.size*2)
+    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">*=</span> <span class="mi">2</span>
+        <span class="c1"># Aは最初全ての要素が0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dat</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
 
-    def update(self, pos, x):
-        # self.size//2 以降が、最も下の要素(葉)である
-        pos = pos + self.size
-        self.dat[pos] = x
-        # 上のノードへの影響を反映する
-        while pos &gt;= 2:
-            # 親ノードのindex
-            pos //= 2
-            # 二つの子ノードの大きい方を親ノードに反映する
-            self.dat[pos] = max(self.dat[pos*2], self.dat[pos*2+1])
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="c1"># self.size//2 以降が、最も下の要素(葉)である</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dat</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="c1"># 上のノードへの影響を反映する</span>
+        <span class="k">while</span> <span class="n">pos</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="c1"># 親ノードのindex</span>
+            <span class="n">pos</span> <span class="o">//=</span> <span class="mi">2</span>
+            <span class="c1"># 二つの子ノードの大きい方を親ノードに反映する</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dat</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dat</span><span class="p">[</span><span class="n">pos</span><span class="o">*</span><span class="mi">2</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">dat</span><span class="p">[</span><span class="n">pos</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
 
-    # (l, r)は目標区間、(a, b)は現在調査中の区間、u はセル番号、
-    def query(self, l, r, a, b, u):
-        # print(l, r, a, b, u, self.dat[u])
-        # 全く含まれていない場合
-        if b &lt;= l or r &lt;= a:
-            return -math.inf
-        # 完全に含間れている場合
-        if l &lt;= a and b &lt;= r:
-            return self.dat[u]
-        mid = (a+b)//2
-        left_ans = self.query(l, r, a, mid, u*2)
-        right_ans = self.query(l, r, mid, b, u*2+1)
-        return max(left_ans, right_ans)
+    <span class="c1"># (l, r)は目標区間、(a, b)は現在調査中の区間、u はセル番号、</span>
+    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
+        <span class="c1"># print(l, r, a, b, u, self.dat[u])</span>
+        <span class="c1"># 全く含まれていない場合</span>
+        <span class="k">if</span> <span class="n">b</span> <span class="o">&lt;=</span> <span class="n">l</span> <span class="ow">or</span> <span class="n">r</span> <span class="o">&lt;=</span> <span class="n">a</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">inf</span>
+        <span class="c1"># 完全に含間れている場合</span>
+        <span class="k">if</span> <span class="n">l</span> <span class="o">&lt;=</span> <span class="n">a</span> <span class="ow">and</span> <span class="n">b</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dat</span><span class="p">[</span><span class="n">u</span><span class="p">]</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+        <span class="n">left_ans</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">mid</span><span class="p">,</span> <span class="n">u</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">right_ans</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">mid</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">u</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">left_ans</span><span class="p">,</span> <span class="n">right_ans</span><span class="p">)</span>
 
 
-def main():
-    N, Q = map(int, stdin.readline().split())
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">N</span><span class="p">,</span> <span class="n">Q</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
 
-    seg_tree = SegmentTree()
-    seg_tree.init(N)
+    <span class="n">seg_tree</span> <span class="o">=</span> <span class="n">SegmentTree</span><span class="p">()</span>
+    <span class="n">seg_tree</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 
-    for _ in range(Q):
-        *query, = map(int, stdin.readline().split())
-        if query[0] == 1:
-            pos, x = query[1], query[2]
-            seg_tree.update(pos-1, x)
-        elif query[0] == 2:
-            l, r = query[1], query[2]
-            ans = seg_tree.query(l-1, r-1, 0, seg_tree.size, 1)
-            print(ans)
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Q</span><span class="p">):</span>
+        <span class="o">*</span><span class="n">query</span><span class="p">,</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">query</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">pos</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">query</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">query</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">seg_tree</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">pos</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">query</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">l</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">query</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">query</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="n">seg_tree</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">seg_tree</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -583,59 +588,59 @@ def main():
 <p>セグメント木で区間の和を記録しておく問題</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class SegmentTree:
-    def __init__(self):
-        self.dat = []
-        self.size = 1
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SegmentTree</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dat</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mi">1</span>
 
-    def init(self, N):
-        self.size = 1
-        while self.size &lt; N:
-            self.size *= 2
-        # Aは最初全ての要素が0
-        self.dat = [0]*(self.size*2)
+    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">*=</span> <span class="mi">2</span>
+        <span class="c1"># Aは最初全ての要素が0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dat</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
 
-    def update(self, pos, x):
-        # self.size//2 以降が、最も下の要素(葉)である
-        pos = pos + self.size
-        self.dat[pos] = x
-        # 上のノードへの影響を反映する
-        while pos &gt;= 2:
-            # 親ノードのindex
-            pos //= 2
-            # 二つの子ノードの大きい方を親ノードに反映する
-            self.dat[pos] = self.dat[pos*2] + self.dat[pos*2+1]
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="c1"># self.size//2 以降が、最も下の要素(葉)である</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dat</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="c1"># 上のノードへの影響を反映する</span>
+        <span class="k">while</span> <span class="n">pos</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="c1"># 親ノードのindex</span>
+            <span class="n">pos</span> <span class="o">//=</span> <span class="mi">2</span>
+            <span class="c1"># 二つの子ノードの大きい方を親ノードに反映する</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dat</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dat</span><span class="p">[</span><span class="n">pos</span><span class="o">*</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dat</span><span class="p">[</span><span class="n">pos</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
 
-    # (l, r)は目標区間、(a, b)は現在調査中の区間、u はセル番号、
-    def query(self, l, r, a, b, u):
-        # print(l, r, a, b, u, self.dat[u])
-        # 全く含まれていない場合
-        if b &lt;= l or r &lt;= a:
-            return 0
-        # 完全に含間れている場合
-        if l &lt;= a and b &lt;= r:
-            return self.dat[u]
-        mid = (a+b)//2
-        left_ans = self.query(l, r, a, mid, u*2)
-        right_ans = self.query(l, r, mid, b, u*2+1)
-        return left_ans+right_ans
+    <span class="c1"># (l, r)は目標区間、(a, b)は現在調査中の区間、u はセル番号、</span>
+    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
+        <span class="c1"># print(l, r, a, b, u, self.dat[u])</span>
+        <span class="c1"># 全く含まれていない場合</span>
+        <span class="k">if</span> <span class="n">b</span> <span class="o">&lt;=</span> <span class="n">l</span> <span class="ow">or</span> <span class="n">r</span> <span class="o">&lt;=</span> <span class="n">a</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="c1"># 完全に含間れている場合</span>
+        <span class="k">if</span> <span class="n">l</span> <span class="o">&lt;=</span> <span class="n">a</span> <span class="ow">and</span> <span class="n">b</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dat</span><span class="p">[</span><span class="n">u</span><span class="p">]</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+        <span class="n">left_ans</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">mid</span><span class="p">,</span> <span class="n">u</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">right_ans</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">mid</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">u</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">left_ans</span><span class="o">+</span><span class="n">right_ans</span>
 
 
-def main():
-    N, Q = map(int, stdin.readline().split())
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">N</span><span class="p">,</span> <span class="n">Q</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
 
-    seg_tree = SegmentTree()
-    seg_tree.init(N)
+    <span class="n">seg_tree</span> <span class="o">=</span> <span class="n">SegmentTree</span><span class="p">()</span>
+    <span class="n">seg_tree</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 
-    for _ in range(Q):
-        *query, = map(int, stdin.readline().split())
-        if query[0] == 1:
-            pos, x = query[1], query[2]
-            seg_tree.update(pos-1, x)
-        elif query[0] == 2:
-            l, r = query[1], query[2]
-            ans = seg_tree.query(l-1, r-1, 0, seg_tree.size, 1)
-            print(ans)
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Q</span><span class="p">):</span>
+        <span class="o">*</span><span class="n">query</span><span class="p">,</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">query</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">pos</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">query</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">query</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">seg_tree</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">pos</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">query</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">l</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">query</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">query</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="n">seg_tree</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">seg_tree</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

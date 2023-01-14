@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="勉強媒体、参考文献" href="../reference.html" />
-    <link rel="prev" title="LCS(Longest Common Subsequence)" href="../dp/lcs.html" />
+    <link rel="prev" title="区間DP(Interval DP)" href="../dp/interval_dp.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -198,6 +198,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../dp/lcs.html">
      LCS(Longest Common Subsequence)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dp/interval_dp.html">
+     区間DP(Interval DP)
     </a>
    </li>
   </ul>
@@ -587,13 +592,13 @@ z = \frac{x - \bar{x}}{s}
 \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd
-import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
 
-df = pd.read_csv(&quot;https://raw.githubusercontent.com/kirenz/datasets/master/Hitters.csv&quot;)
-df.describe()
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/kirenz/datasets/master/Hitters.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -802,35 +807,35 @@ df.describe()
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 欠損値対応
-df.dropna(inplace=True)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 欠損値対応</span>
+<span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># データの準備
-y_col = &quot;Salary&quot;
-X = df.loc[:, df.columns!=y_col]
-y = df[y_col]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データの準備</span>
+<span class="n">y_col</span> <span class="o">=</span> <span class="s2">&quot;Salary&quot;</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">!=</span><span class="n">y_col</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">y_col</span><span class="p">]</span>
 
-# 標準化のために、値が数字のカラムのみを取得する
-numeric_cols = X.select_dtypes(include=np.number).columns.to_list()
+<span class="c1"># 標準化のために、値が数字のカラムのみを取得する</span>
+<span class="n">numeric_cols</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
 
-print(X.dtypes)
-# ダミー変数を作成(カテゴリー変数を0, 1の数字に変換)
-X = pd.get_dummies(X, drop_first=True)
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+<span class="c1"># ダミー変数を作成(カテゴリー変数を0, 1の数字に変換)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-# hold-out
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
+<span class="c1"># hold-out</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-# 標準化
-scaler = StandardScaler()
-X_train[numeric_cols] = scaler.fit_transform(X_train[numeric_cols])
-# テスト用の値も、学習用のデータでfitしたscalerを用いるので注意
-X_test[numeric_cols] = scaler.transform(X_test[numeric_cols])
-X
+<span class="c1"># 標準化</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_train</span><span class="p">[</span><span class="n">numeric_cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">numeric_cols</span><span class="p">])</span>
+<span class="c1"># テスト用の値も、学習用のデータでfitしたscalerを用いるので注意</span>
+<span class="n">X_test</span><span class="p">[</span><span class="n">numeric_cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="n">numeric_cols</span><span class="p">])</span>
+<span class="n">X</span>
 </pre></div>
 </div>
 </div>
@@ -1175,11 +1180,11 @@ dtype: object
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../dp/lcs.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../dp/interval_dp.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">LCS(Longest Common Subsequence)</p>
+            <p class="prev-next-title">区間DP(Interval DP)</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../reference.html" title="next page">
