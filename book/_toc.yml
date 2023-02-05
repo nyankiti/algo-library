@@ -24,6 +24,7 @@ parts:
         sections:
           - file: dp/lcs
           - file: dp/interval_dp
+          - file: dp/bit_dp
 
   - caption: 数学,統計
     chapters:
