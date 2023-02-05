@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Ford Fulkerson アルゴリズム &#8212; Kentaro Algo Library</title>
+    <title>Ford Fulkerson アルゴリズム(最大フロー問題) &#8212; Kentaro Algo Library</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -178,7 +178,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Ford Fulkerson アルゴリズム
+     Ford Fulkerson アルゴリズム(最大フロー問題)
     </a>
    </li>
   </ul>
@@ -423,23 +423,70 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c">
+   C++での実装
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python">
+   Pythonでの実装
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Ford Fulkerson アルゴリズム</h1>
+                <h1>Ford Fulkerson アルゴリズム(最大フロー問題)</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c">
+   C++での実装
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python">
+   Pythonでの実装
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -448,12 +495,79 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="ford-fulkerson">
-<h1>Ford Fulkerson アルゴリズム<a class="headerlink" href="#ford-fulkerson" title="Permalink to this headline">#</a></h1>
+<h1>Ford Fulkerson アルゴリズム(最大フロー問題)<a class="headerlink" href="#ford-fulkerson" title="Permalink to this headline">#</a></h1>
 <ol class="simple">
 <li><p>残余グラフ上の容量(cap)が0の辺を通らないStartからTerminalまでのパスを見つける</p></li>
 <li><p>パスにおける容量(cap)の最小値をFとするとき、パス上に流量Fだけ流す。  ここで逆方向の変については、元々のグラフの流量をFだけ減らす</p></li>
 <li><p>１でパスが見つからなくなるまで 1, 2 を繰り返す</p></li>
 </ol>
+<section id="c">
+<h2>C++での実装<a class="headerlink" href="#c" title="Permalink to this headline">#</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">Edge</span><span class="w"> </span><span class="p">{</span>
+<span class="w">　　　　　</span><span class="c1">// to: 行き先, cap: 容量, rev: 行き先から見た自分の番号</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">to</span><span class="p">,</span><span class="w"> </span><span class="n">cap</span><span class="p">,</span><span class="w"> </span><span class="n">rev</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MaximumFlow</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="c1">// 最初の変数はメンバー初期化リストの記法を用いて設定する</span>
+<span class="w">  </span><span class="k">explicit</span><span class="w"> </span><span class="n">MaximumFlow</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="n">used</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">),</span><span class="w"> </span><span class="n">G</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">add_edge</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">current_Ga</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">G</span><span class="p">[</span><span class="n">a</span><span class="p">].</span><span class="n">size</span><span class="p">();</span><span class="w">  </span><span class="c1">// 現時点でのG[a]の要素数</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">current_Gb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">G</span><span class="p">[</span><span class="n">b</span><span class="p">].</span><span class="n">size</span><span class="p">();</span><span class="w">  </span><span class="c1">// 現時点でのG[b]の要素数</span>
+<span class="w">    </span><span class="n">G</span><span class="p">[</span><span class="n">a</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">Edge</span><span class="p">({</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="n">current_Gb</span><span class="p">}));</span>
+<span class="w">    </span><span class="n">G</span><span class="p">[</span><span class="n">b</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">Edge</span><span class="p">({</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">current_Ga</span><span class="p">}));</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// F はスタートからposに到達する過程での残余グラフの辺の容量の最小値</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">dfs</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">goal</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">F</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pos</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">goal</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">F</span><span class="p">;</span>
+<span class="w">    </span><span class="n">used</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// 探索</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">G</span><span class="p">[</span><span class="n">pos</span><span class="p">].</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// 容量 0 の辺は扱えない</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="n">pos</span><span class="p">][</span><span class="n">i</span><span class="p">].</span><span class="n">cap</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
+
+<span class="w">      </span><span class="c1">// 既に訪問んした頂点にはいかない</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">used</span><span class="p">[</span><span class="n">G</span><span class="p">[</span><span class="n">pos</span><span class="p">][</span><span class="n">i</span><span class="p">].</span><span class="n">to</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
+
+<span class="w">      </span><span class="c1">// 目的地までのパスを探す</span>
+<span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">flow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dfs</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="n">pos</span><span class="p">][</span><span class="n">i</span><span class="p">].</span><span class="n">to</span><span class="p">,</span><span class="w"> </span><span class="n">goal</span><span class="p">,</span><span class="w"> </span><span class="n">min</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="w"> </span><span class="n">G</span><span class="p">[</span><span class="n">pos</span><span class="p">][</span><span class="n">i</span><span class="p">].</span><span class="n">cap</span><span class="p">));</span>
+
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">flow</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">G</span><span class="p">[</span><span class="n">pos</span><span class="p">][</span><span class="n">i</span><span class="p">].</span><span class="n">cap</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">flow</span><span class="p">;</span>
+<span class="w">        </span><span class="n">G</span><span class="p">[</span><span class="n">G</span><span class="p">[</span><span class="n">pos</span><span class="p">][</span><span class="n">i</span><span class="p">].</span><span class="n">to</span><span class="p">][</span><span class="n">G</span><span class="p">[</span><span class="n">pos</span><span class="p">][</span><span class="n">i</span><span class="p">].</span><span class="n">rev</span><span class="p">].</span><span class="n">cap</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">flow</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">flow</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// 全ての辺を探索しても見つからなかった場合</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">max_flow</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">goal</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">total_flow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">size</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="n">used</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">F</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dfs</span><span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">goal</span><span class="p">,</span><span class="w"> </span><span class="mi">1000000000</span><span class="p">);</span>
+
+<span class="w">      </span><span class="c1">// 流せなくなったら終了</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">F</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+
+<span class="w">      </span><span class="n">total_flow</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">F</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">total_flow</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w"> </span><span class="k">private</span><span class="o">:</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">;</span>
+<span class="w">  </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">used</span><span class="p">;</span>
+<span class="w">  </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Edge</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">G</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+<section id="python">
+<h2>Pythonでの実装<a class="headerlink" href="#python" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
@@ -533,6 +647,7 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
