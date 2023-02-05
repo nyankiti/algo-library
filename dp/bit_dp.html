@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>グラフ &#8212; Kentaro Algo Library</title>
+    <title>bit DP &#8212; Kentaro Algo Library</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="トポロジカルソート" href="topological_sort.html" />
-    <link rel="prev" title="vector" href="../geometry/vector.html" />
+    <link rel="next" title="前処理" href="../ml/preprocessing.html" />
+    <link rel="prev" title="区間DP(Interval DP)" href="interval_dp.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -136,75 +136,75 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../graph/index.html">
    グラフ
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="topological_sort.html">
+    <a class="reference internal" href="../graph/topological_sort.html">
      トポロジカルソート
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="binary_search_tree.html">
+    <a class="reference internal" href="../graph/binary_search_tree.html">
      binary search tree
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="bipartite_graph.html">
+    <a class="reference internal" href="../graph/bipartite_graph.html">
      二部グラフ
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="union_find.html">
+    <a class="reference internal" href="../graph/union_find.html">
      Union Find木
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="segment_tree.html">
+    <a class="reference internal" href="../graph/segment_tree.html">
      セグメント木
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="dijkstra.html">
+    <a class="reference internal" href="../graph/dijkstra.html">
      ダイクストラ法
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="ford_fulkerson.html">
+    <a class="reference internal" href="../graph/ford_fulkerson.html">
      Ford Fulkerson アルゴリズム(最大フロー問題)
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../dp/index.html">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
    dpまとめ
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="../dp/lcs.html">
+    <a class="reference internal" href="lcs.html">
      LCS(Longest Common Subsequence)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../dp/interval_dp.html">
+    <a class="reference internal" href="interval_dp.html">
      区間DP(Interval DP)
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../dp/bit_dp.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      bit DP
     </a>
    </li>
@@ -334,7 +334,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/nyankiti/algo-library//issues/new?title=Issue%20on%20page%20%2Fgraph/index.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/nyankiti/algo-library//issues/new?title=Issue%20on%20page%20%2Fdp/bit_dp.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -362,7 +362,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/graph/index.md"
+        <a href="../_sources/dp/bit_dp.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -422,8 +422,8 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   グラフの様々な表現方法
+  <a class="reference internal nav-link" href="#id1">
+   巡回セールスマン問題
   </a>
  </li>
 </ul>
@@ -435,7 +435,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>グラフ</h1>
+                <h1>bit DP</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -446,8 +446,8 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   グラフの様々な表現方法
+  <a class="reference internal nav-link" href="#id1">
+   巡回セールスマン問題
   </a>
  </li>
 </ul>
@@ -460,24 +460,48 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>グラフ<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
-<section id="id2">
-<h2>グラフの様々な表現方法<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
-<ul class="simple">
-<li><p>Adjacency Matrices(隣接行列)　　グラフが密集している時(vertexの数が多い時)</p></li>
-<li><p>Adjacency List(隣接配列)　グラフがスカスカな時(vertexの数が少ない時)</p></li>
-</ul>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="topological_sort.html">トポロジカルソート</a></li>
-<li class="toctree-l1"><a class="reference internal" href="binary_search_tree.html">binary search tree</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bipartite_graph.html">二部グラフ</a></li>
-<li class="toctree-l1"><a class="reference internal" href="union_find.html">Union Find木</a></li>
-<li class="toctree-l1"><a class="reference internal" href="segment_tree.html">セグメント木</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dijkstra.html">ダイクストラ法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ford_fulkerson.html">Ford Fulkerson アルゴリズム(最大フロー問題)</a></li>
-</ul>
+  <section class="tex2jax_ignore mathjax_ignore" id="bit-dp">
+<h1>bit DP<a class="headerlink" href="#bit-dp" title="Permalink to this headline">#</a></h1>
+<section id="id1">
+<h2>巡回セールスマン問題<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">dp[i][j]</span></code> : 既に訪問した都市集合が i であり、現在位置が j である時の、現時点での最小移動距離</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/* macro */</span>
+<span class="cp">#define rep(i, a, n) for (int i = (a); i &lt; (n); ++i)</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">calc_dist</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">xj</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">yj</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">xk</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">yk</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">xj</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">xk</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">xj</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">xk</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">yj</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">yk</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">yj</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">yk</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">[</span><span class="mi">1009</span><span class="p">],</span><span class="w"> </span><span class="n">Y</span><span class="p">[</span><span class="mi">1009</span><span class="p">];</span>
+<span class="c1">// dp[i][j] =&gt; 訪問した都市集合が i で現在位置が j である時の最小移動距離</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">dp</span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">16</span><span class="p">][</span><span class="mi">19</span><span class="p">];</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span>
+<span class="w">  </span><span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">  </span><span class="c1">// dpの初期化</span>
+<span class="w">  </span><span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="n">rep</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1e9</span><span class="p">;</span>
+<span class="w">  </span><span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">rep</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// 未訪問の都市からは遷移を考えられないのでcontinueする</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">1e9</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
+
+<span class="w">      </span><span class="c1">// 都市 j から 都市 k への遷移を考える</span>
+<span class="w">      </span><span class="n">rep</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 既に都市 k を訪問している場合</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">i</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">k</span><span class="p">))</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">DIST</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">calc_dist</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="n">Y</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="n">X</span><span class="p">[</span><span class="n">k</span><span class="p">],</span><span class="w"> </span><span class="n">Y</span><span class="p">[</span><span class="n">k</span><span class="p">]);</span>
+
+<span class="w">        </span><span class="c1">// 都市 k へ遷移</span>
+<span class="w">        </span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">k</span><span class="p">)][</span><span class="n">k</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">k</span><span class="p">)][</span><span class="n">k</span><span class="p">],</span><span class="w"> </span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">DIST</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%.12lf</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="p">[(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
 </div>
 </section>
 </section>
@@ -495,7 +519,7 @@ title="Print to PDF"
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./graph"
+            path: "./dp"
         },
         predefinedOutput: true
     }
@@ -509,17 +533,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../geometry/vector.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="interval_dp.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">vector</p>
+            <p class="prev-next-title">区間DP(Interval DP)</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="topological_sort.html" title="next page">
+    <a class='right-next' id="next-link" href="../ml/preprocessing.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">トポロジカルソート</p>
+        <p class="prev-next-title">前処理</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

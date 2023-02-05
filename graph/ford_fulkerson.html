@@ -203,6 +203,11 @@ const thebe_selector_output = ".output, .cell_output"
      区間DP(Interval DP)
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dp/bit_dp.html">
+     bit DP
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -451,9 +456,16 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#python">
-   Pythonでの実装
+  <a class="reference internal nav-link" href="#id1">
+   最大フロー問題の応用例 - 二部マッチング問題
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python">
+     Pythonでの実装
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -480,9 +492,16 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#python">
-   Pythonでの実装
+  <a class="reference internal nav-link" href="#id1">
+   最大フロー問題の応用例 - 二部マッチング問題
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python">
+     Pythonでの実装
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -566,8 +585,11 @@ title="Print to PDF"
 </pre></div>
 </div>
 </section>
+<section id="id1">
+<h2>最大フロー問題の応用例 - 二部マッチング問題<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<p>二部グラフに辺の向きをつけ、スタート、ゴールをそれぞれ追加し、辺の容量を全て 1 とすると、二部マッチングの最大本数は、 s から t までの最大フロー問題に帰着する</p>
 <section id="python">
-<h2>Pythonでの実装<a class="headerlink" href="#python" title="Permalink to this headline">#</a></h2>
+<h3>Pythonでの実装<a class="headerlink" href="#python" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
@@ -647,6 +669,7 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+</section>
 </section>
 </section>
 
