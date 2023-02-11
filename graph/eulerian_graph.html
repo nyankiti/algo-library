@@ -457,44 +457,37 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   オイラーグラフ(Eulerian graph)
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   グラフがオイラーグラフである条件
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     グラフがオイラーグラフである条件
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     グラフが準オイラーグラフである条件
-    </a>
-   </li>
-  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   グラフが準オイラーグラフである条件
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#eulerian-path">
    オイラー閉路(Eulerian path)の求め方
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id3">
      問題文
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id4">
      解法
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
-     参考
-    </a>
-   </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   参考
+  </a>
  </li>
 </ul>
 
@@ -515,44 +508,37 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   オイラーグラフ(Eulerian graph)
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   グラフがオイラーグラフである条件
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     グラフがオイラーグラフである条件
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     グラフが準オイラーグラフである条件
-    </a>
-   </li>
-  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   グラフが準オイラーグラフである条件
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#eulerian-path">
    オイラー閉路(Eulerian path)の求め方
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id3">
      問題文
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id4">
      解法
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
-     参考
-    </a>
-   </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   参考
+  </a>
  </li>
 </ul>
 
@@ -576,12 +562,11 @@ title="Print to PDF"
 <p>次数が奇数であるものがちょうど2つ<br />
 ※スタートとゴールが異なるが一筆書きできるグラフを<strong>準オイラーグラフ</strong></p>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="eulerian-path">
-<h1>オイラー閉路(Eulerian path)の求め方<a class="headerlink" href="#eulerian-path" title="Permalink to this headline">#</a></h1>
+<section id="eulerian-path">
+<h2>オイラー閉路(Eulerian path)の求め方<a class="headerlink" href="#eulerian-path" title="Permalink to this headline">#</a></h2>
 <p><a class="reference external" href="https://atcoder.jp/contests/abc213/tasks/abc213_d">ABC213-D問題</a>で出題された問題がオイラー閉路を求める問題そのもの。</p>
 <section id="id3">
-<h2>問題文<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<h3>問題文<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
 <p>AtCoder 国には 1 から N の番号がついた N 個の都市と、1 から N−1 の番号がついた N−1 個の道路があります。<br />
 道路 i を通ると都市 <span class="math notranslate nohighlight">\(A_i\)</span> と都市 <span class="math notranslate nohighlight">\(B_i\)</span> の間を相互に移動することができます。全ての都市は道路を使って互いに行き来できることが保証されます。<br />
 高橋くんは都市 1 を出発し、次のルールで旅をします。</p>
@@ -597,7 +582,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="id4">
-<h2>解法<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<h3>解法<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
 <p>親以外をdfsしていくように書くのがポイント</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">B</span><span class="p">;</span>
 <span class="n">vi</span><span class="w"> </span><span class="n">G</span><span class="p">[</span><span class="mi">200009</span><span class="p">];</span>
@@ -632,6 +617,7 @@ title="Print to PDF"
 <span class="p">}</span>
 </pre></div>
 </div>
+</section>
 </section>
 <section id="id5">
 <h2>参考<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
