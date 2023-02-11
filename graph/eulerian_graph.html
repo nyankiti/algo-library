@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>LCS(Longest Common Subsequence) &#8212; Kentaro Algo Library</title>
+    <title>オイラーグラフ(Eulerian graph) &#8212; Kentaro Algo Library</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -50,10 +50,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="区間DP(Interval DP)" href="interval_dp.html" />
-    <link rel="prev" title="dpまとめ" href="index.html" />
+    <link rel="next" title="トポロジカルソート" href="topological_sort.html" />
+    <link rel="prev" title="グラフ" href="index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -136,80 +138,80 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../graph/index.html">
-   グラフ
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../graph/eulerian_graph.html">
-     オイラーグラフ(Eulerian graph)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../graph/topological_sort.html">
-     トポロジカルソート
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../graph/binary_search_tree.html">
-     binary search tree
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../graph/bipartite_graph.html">
-     二部グラフ
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../graph/union_find.html">
-     Union Find木
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../graph/segment_tree.html">
-     セグメント木
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../graph/dijkstra.html">
-     ダイクストラ法
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../graph/ford_fulkerson.html">
-     Ford Fulkerson アルゴリズム(最大フロー問題)
-    </a>
-   </li>
-  </ul>
- </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="index.html">
-   dpまとめ
+   グラフ
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
+     オイラーグラフ(Eulerian graph)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="topological_sort.html">
+     トポロジカルソート
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="binary_search_tree.html">
+     binary search tree
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="bipartite_graph.html">
+     二部グラフ
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="union_find.html">
+     Union Find木
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="segment_tree.html">
+     セグメント木
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dijkstra.html">
+     ダイクストラ法
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ford_fulkerson.html">
+     Ford Fulkerson アルゴリズム(最大フロー問題)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../dp/index.html">
+   dpまとめ
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dp/lcs.html">
      LCS(Longest Common Subsequence)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="interval_dp.html">
+    <a class="reference internal" href="../dp/interval_dp.html">
      区間DP(Interval DP)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="bit_dp.html">
+    <a class="reference internal" href="../dp/bit_dp.html">
      bit DP
     </a>
    </li>
@@ -308,7 +310,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/nyankiti/algo-library/gh-pages?urlpath=tree/dp/lcs.ipynb"
+        <a href="https://mybinder.org/v2/gh/nyankiti/algo-library/gh-pages?urlpath=tree/graph/eulerian_graph.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -368,7 +370,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/nyankiti/algo-library//issues/new?title=Issue%20on%20page%20%2Fdp/lcs.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/nyankiti/algo-library//issues/new?title=Issue%20on%20page%20%2Fgraph/eulerian_graph.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -396,7 +398,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/dp/lcs.ipynb"
+        <a href="../_sources/graph/eulerian_graph.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -455,10 +457,44 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   解説
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   オイラーグラフ(Eulerian graph)
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     グラフがオイラーグラフである条件
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     グラフが準オイラーグラフである条件
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#eulerian-path">
+   オイラー閉路(Eulerian path)の求め方
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     問題文
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     解法
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     参考
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -469,7 +505,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>LCS(Longest Common Subsequence)</h1>
+                <h1>オイラーグラフ(Eulerian graph)</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -479,10 +515,44 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   解説
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   オイラーグラフ(Eulerian graph)
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     グラフがオイラーグラフである条件
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     グラフが準オイラーグラフである条件
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#eulerian-path">
+   オイラー閉路(Eulerian path)の求め方
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     問題文
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     解法
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     参考
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -494,55 +564,80 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="lcs-longest-common-subsequence">
-<h1>LCS(Longest Common Subsequence)<a class="headerlink" href="#lcs-longest-common-subsequence" title="Permalink to this headline">#</a></h1>
-<p>2つの文字列s,tが与えられる。<br />
-s,tの共通部分列であって、最長のものを1つ求めよ。<br />
-制約：|s|,|t|≤3∗103</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="eulerian-graph">
+<h1>オイラーグラフ(Eulerian graph)<a class="headerlink" href="#eulerian-graph" title="Permalink to this headline">#</a></h1>
+<p>オイラーグラフとは，一筆書きしてもどってこれる，つまりある頂点から全ての辺を通ってもとの頂点にもどってくるような閉路が存在するグラフのことを言います（そのような閉路のことをオイラー閉路といいます）</p>
 <section id="id1">
-<h2>解説<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
-<p>dp[i][j]=(sをi文字目、tをj文字目までみた時の最長共通部分列の長さ)<br />
-その後、具体的に文字列を作るにはDP配列を逆にたどる。</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lcs</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
-    <span class="n">len_s</span><span class="p">,</span> <span class="n">len_t</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<h2>グラフがオイラーグラフである条件<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<p>全ての頂点の次数が偶数</p>
+</section>
+<section id="id2">
+<h2>グラフが準オイラーグラフである条件<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<p>次数が奇数であるものがちょうど2つ<br />
+※スタートとゴールが異なるが一筆書きできるグラフを<strong>準オイラーグラフ</strong></p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="eulerian-path">
+<h1>オイラー閉路(Eulerian path)の求め方<a class="headerlink" href="#eulerian-path" title="Permalink to this headline">#</a></h1>
+<p><a class="reference external" href="https://atcoder.jp/contests/abc213/tasks/abc213_d">ABC213-D問題</a>で出題された問題がオイラー閉路を求める問題そのもの。</p>
+<section id="id3">
+<h2>問題文<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<p>AtCoder 国には 1 から N の番号がついた N 個の都市と、1 から N−1 の番号がついた N−1 個の道路があります。<br />
+道路 i を通ると都市 <span class="math notranslate nohighlight">\(A_i\)</span> と都市 <span class="math notranslate nohighlight">\(B_i\)</span> の間を相互に移動することができます。全ての都市は道路を使って互いに行き来できることが保証されます。<br />
+高橋くんは都市 1 を出発し、次のルールで旅をします。</p>
+<ul class="simple">
+<li><p>いまいる都市と道路で直接つながっている都市のうち、まだ訪れたことがない都市が存在するとき、そのような都市のうち番号が最も小さい都市へ移動する</p></li>
+<li><p>そのような都市が存在しないとき</p>
+<ul>
+<li><p>いまいる都市が都市 1 なら旅を終了する</p></li>
+<li><p>そうでないなら、いまいる都市を初めて訪れたときに直前にいた都市へ移動する
+高橋くんが旅の過程で訪れる都市を順に答えてください。</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id4">
+<h2>解法<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<p>親以外をdfsしていくように書くのがポイント</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">B</span><span class="p">;</span>
+<span class="n">vi</span><span class="w"> </span><span class="n">G</span><span class="p">[</span><span class="mi">200009</span><span class="p">];</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">visited</span><span class="p">[</span><span class="mi">200009</span><span class="p">];</span>
+<span class="n">vi</span><span class="w"> </span><span class="n">ans</span><span class="p">;</span>
 
-    <span class="c1"># sをi文字目、tをj文字目までみた時の最長共通部分列の長さ</span>
-    <span class="n">dp</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">len_s</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">len_t</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">ans</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">adj</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">G</span><span class="p">[</span><span class="n">v</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">adj</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">parent</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">    </span><span class="n">dfs</span><span class="p">(</span><span class="n">adj</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ans</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
-                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span>
+<span class="w">  </span><span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">B</span><span class="p">;</span>
+<span class="w">    </span><span class="n">G</span><span class="p">[</span><span class="n">A</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">B</span><span class="p">);</span>
+<span class="w">    </span><span class="n">G</span><span class="p">[</span><span class="n">B</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">sort</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">G</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">end</span><span class="p">());</span>
+<span class="w">    </span><span class="n">visited</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 
-    <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">len_t</span><span class="p">,</span> <span class="n">len_s</span>
-    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
-        <span class="k">if</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
-            <span class="n">ans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-            <span class="n">i</span> <span class="o">-=</span> <span class="mi">1</span>
-            <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="k">elif</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]:</span>
-            <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="k">elif</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]:</span>
-            <span class="n">i</span> <span class="o">-=</span> <span class="mi">1</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ans</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+<span class="w">  </span><span class="n">dfs</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 
-
-
-<span class="n">lcs</span><span class="p">(</span><span class="s2">&quot;axyb&quot;</span><span class="p">,</span> <span class="s2">&quot;abyxb&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ans</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>axb
-</pre></div>
-</div>
-</div>
-</div>
+</section>
+<section id="id5">
+<h2>参考<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://manabitimes.jp/math/642">オイラーグラフの定理（一筆書きできる条件）とその証明</a></p></li>
+</ul>
 </section>
 </section>
 
@@ -559,7 +654,7 @@ s,tの共通部分列であって、最長のものを1つ求めよ。<br />
         },
         kernelOptions: {
             name: "python3",
-            path: "./dp"
+            path: "./graph"
         },
         predefinedOutput: true
     }
@@ -577,13 +672,13 @@ s,tの共通部分列であって、最長のものを1つ求めよ。<br />
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">dpまとめ</p>
+            <p class="prev-next-title">グラフ</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="interval_dp.html" title="next page">
+    <a class='right-next' id="next-link" href="topological_sort.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">区間DP(Interval DP)</p>
+        <p class="prev-next-title">トポロジカルソート</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
