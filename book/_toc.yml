@@ -12,6 +12,7 @@ parts:
 
       - file: graph/index
         sections:
+          - file: graph/eulerian_graph
           - file: graph/topological_sort
           - file: graph/binary_search_tree
           - file: graph/bipartite_graph
