@@ -6,9 +6,10 @@ root: intro
 parts:
   - caption: 競プロ
     chapters:
-      - file: geometry/index
+      - file: cp_technic/index
         sections:
-          - file: geometry/vector
+          - file: cp_technic/bit_full_search
+          - file: cp_technic/vector
 
       - file: graph/index
         sections:
