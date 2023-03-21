@@ -20,6 +20,7 @@ parts:
           - file: graph/union_find
           - file: graph/segment_tree
           - file: graph/dijkstra
+          - file: graph/bellman_ford
           - file: graph/ford_fulkerson
 
       - file: dp/index
@@ -27,6 +28,7 @@ parts:
           - file: dp/lcs
           - file: dp/interval_dp
           - file: dp/bit_dp
+          - file: dp/tree_dp
 
   - caption: 数学,統計
     chapters:

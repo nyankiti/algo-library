@@ -10,8 +10,8 @@ RUN pip install jupyter-book
 # jupyter の起動パラメータを設定します
 EXPOSE 8888
 CMD ["jupyter", "lab", \
-     "--port=8888", \
-     "--ip=0.0.0.0", \
-     "--allow-root", \
-     "--no-browser", \
-     "--NotebookApp.token=''"]
+    "--port=8888", \
+    "--ip=0.0.0.0", \
+    "--allow-root", \
+    "--no-browser", \
+    "--NotebookApp.token=''"]
