@@ -169,6 +169,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../graph/binary_search_tree.html">binary search tree</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../graph/bipartite_graph.html">二部グラフ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../graph/union_find.html">Union Find木</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/BIT.html">BIT(Binary Indexed Tree)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../graph/segment_tree.html">セグメント木</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../graph/dijkstra.html">ダイクストラ法</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../graph/bellman_ford.html">ベルマンフォード法</a></li>
@@ -412,6 +413,12 @@ document.write(`
 DFSの過程で循環すると計算が終わらないので、木は基本的には根を持ったDAG(有向非循環グラフ)と捉えても差し支えない。</p>
 <section id="dp-p-independent-set">
 <h2><a class="reference external" href="https://atcoder.jp/contests/dp/tasks/dp_p">DPまとめコンテスト P - Independent Set</a><a class="headerlink" href="#dp-p-independent-set" title="Permalink to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">dp[v][c]:</span> <span class="pre">頂点</span> <span class="pre">v</span> <span class="pre">を根とする部分木を塗る時、頂点vをc色に塗る場合の数</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">dp[v][白]</span> <span class="pre">=</span> <span class="pre">Π(dp[u][白]</span> <span class="pre">+</span> <span class="pre">dp[u][黒])</span></code> (白同士は隣合っても良い)<br />
+v の子 u に対して総積をとる</p>
+<p><code class="docutils literal notranslate"><span class="pre">dp[v][黒]</span> <span class="pre">=</span> <span class="pre">Π(dp[u][白])</span></code><br />
+v の子 u に対して総積をとる</p>
+<p>※0 =&gt; 白, 1 =&gt; 黒</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">ll</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="p">[</span><span class="mi">100009</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span>
 <span class="n">vi</span><span class="w"> </span><span class="n">edges</span><span class="p">[</span><span class="mi">100009</span><span class="p">];</span>
 
