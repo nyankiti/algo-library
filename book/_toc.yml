@@ -18,6 +18,7 @@ parts:
           - file: graph/binary_search_tree
           - file: graph/bipartite_graph
           - file: graph/union_find
+          - file: graph/BIT
           - file: graph/segment_tree
           - file: graph/dijkstra
           - file: graph/bellman_ford
