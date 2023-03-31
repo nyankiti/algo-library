@@ -10,6 +10,7 @@ parts:
         sections:
           - file: cp_technic/bit_full_search
           - file: cp_technic/vector
+          - file: cp_technic/matrix
 
       - file: graph/index
         sections:
