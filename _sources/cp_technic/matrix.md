@@ -295,6 +295,39 @@ public:
 ### 確率
 
 ### グラフのパス
+- [DPまとめコンテスト R - Walk](https://atcoder.jp/contests/dp/tasks/dp_rp)
+隣接行列($A_{ij}=1$ならiからjの有向辺がある。0ならばない行列)において、
+$$
+(頂点iから頂点jへのパスの数) = \sum^N_{K=1}{A_{ik}A_{kj}}
+$$
+である。
+```cpp
+int main() {
+    int N; ll K;
+    cin >> N >> K;
+
+    SquareMatrix A(N);
+    for (int i = 0; i < N; i++)
+        for (int j = 0; j < N; j++) {
+            int val;
+            cin >> val;
+            A.set(i, j, val);
+        }
+
+    // Aのk乗を計算する
+    SquareMatrix A_k = A.power(K);
+    ll ans = 0;
+    for (int i = 0; i < N; i++)
+        for (int j = 0; j < N; j++) {
+            ans += A_k.get(i, j);
+            ans %= MOD;
+        }
+
+    cout << ans << endl;
+
+    return 0;
+}
+```
 
 
 ### 参考
