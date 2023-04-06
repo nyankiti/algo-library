@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>bit全探索 &#8212; Kentaro Algo Library</title>
+    <title>ワーシャルフロイド法 &#8212; Kentaro Algo Library</title>
   
   
   
@@ -63,11 +63,11 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'cp_technic/bit_full_search';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'graph/floyd_warshall';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="座標問題" href="vector.html" />
-    <link rel="prev" title="基礎テクニック" href="index.html" />
+    <link rel="next" title="Ford Fulkerson アルゴリズム(最大フロー問題)" href="ford_fulkerson.html" />
+    <link rel="prev" title="ベルマンフォード法" href="bellman_ford.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -160,24 +160,24 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">競プロ</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">基礎テクニック</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">bit全探索</a></li>
-<li class="toctree-l2"><a class="reference internal" href="vector.html">座標問題</a></li>
-<li class="toctree-l2"><a class="reference internal" href="matrix.html">行列</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cp_technic/index.html">基礎テクニック</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cp_technic/bit_full_search.html">bit全探索</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cp_technic/vector.html">座標問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cp_technic/matrix.html">行列</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../graph/index.html">グラフ</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../graph/eulerian_graph.html">オイラーグラフ(Eulerian graph)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../graph/topological_sort.html">トポロジカルソート</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../graph/binary_search_tree.html">binary search tree</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../graph/bipartite_graph.html">二部グラフ</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../graph/union_find.html">Union Find木</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../graph/BIT.html">BIT(Binary Indexed Tree)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../graph/segment_tree.html">セグメント木</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../graph/dijkstra.html">ダイクストラ法</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../graph/bellman_ford.html">ベルマンフォード法</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../graph/floyd_warshall.html">ワーシャルフロイド法</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../graph/ford_fulkerson.html">Ford Fulkerson アルゴリズム(最大フロー問題)</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">グラフ</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="eulerian_graph.html">オイラーグラフ(Eulerian graph)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topological_sort.html">トポロジカルソート</a></li>
+<li class="toctree-l2"><a class="reference internal" href="binary_search_tree.html">binary search tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bipartite_graph.html">二部グラフ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="union_find.html">Union Find木</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BIT.html">BIT(Binary Indexed Tree)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="segment_tree.html">セグメント木</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dijkstra.html">ダイクストラ法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bellman_ford.html">ベルマンフォード法</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">ワーシャルフロイド法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ford_fulkerson.html">Ford Fulkerson アルゴリズム(最大フロー問題)</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../dp/index.html">dpまとめ</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -269,7 +269,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/nyankiti/algo-library/issues/new?title=Issue%20on%20page%20%2Fcp_technic/bit_full_search.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/nyankiti/algo-library/issues/new?title=Issue%20on%20page%20%2Fgraph/floyd_warshall.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -299,7 +299,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/cp_technic/bit_full_search.md" target="_blank"
+      <li><a href="../_sources/graph/floyd_warshall.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -379,7 +379,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>bit全探索</h1>
+    <h1>ワーシャルフロイド法</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -393,37 +393,36 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="bit">
-<h1>bit全探索<a class="headerlink" href="#bit" title="Permalink to this heading">#</a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code> という演算子はビット演算で、ビットを左へシフトする。よって、<code class="docutils literal notranslate"><span class="pre">(1&lt;&lt;n)</span></code>は10進数の<span class="math notranslate nohighlight">\(2^n\)</span>。</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// {0, 1, ..., n-1} の部分集合の全探索</span>
-<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">bit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">bit</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">);</span><span class="w"> </span><span class="o">++</span><span class="n">bit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">S</span><span class="p">;</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bit</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 列挙に i が含まれるか</span>
-<span class="w">            </span><span class="n">S</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>ワーシャルフロイド法<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<p>全点対間の最短距離を求めるためのアルゴリズム。<br />
+ワーシャルフロイド法は、負の辺が存在する場合でも正確に最短距離を求めることができるが、負の閉路が存在する場合は壊れてしまう。</p>
+<p>ワーシャルフロイド法の計算量は<span class="math notranslate nohighlight">\(O(V^3)\)</span>。ただし、Vは頂点の数を表す。</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#define INF ((1 &lt;&lt; 30) - 1)</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">m</span><span class="p">;</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">dist</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">INF</span><span class="p">));</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">m</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<span class="w">        </span><span class="o">--</span><span class="n">a</span><span class="p">;</span><span class="w"> </span><span class="o">--</span><span class="n">b</span><span class="p">;</span>
+<span class="w">        </span><span class="n">dist</span><span class="p">[</span><span class="n">a</span><span class="p">][</span><span class="n">b</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dist</span><span class="p">[</span><span class="n">b</span><span class="p">][</span><span class="n">a</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">min</span><span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dist</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+<span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="c1">// 出力部分</span>
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">bit</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;: {&quot;</span><span class="p">;</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">S</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;}&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">n=3</span></code>の場合、標準出力は以下のようになる。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span><span class="p">:</span> <span class="p">{}</span>
-<span class="mi">1</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span> <span class="p">}</span>
-<span class="mi">2</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span> <span class="p">}</span>
-<span class="mi">3</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span> <span class="mi">1</span> <span class="p">}</span>
-<span class="mi">4</span><span class="p">:</span> <span class="p">{</span><span class="mi">2</span> <span class="p">}</span>
-<span class="mi">5</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span> <span class="mi">2</span> <span class="p">}</span>
-<span class="mi">6</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span> <span class="mi">2</span> <span class="p">}</span>
-<span class="mi">7</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="p">}</span>
-</pre></div>
-</div>
+<p>実装を見ると分かる通り、<strong>動的計画法の一種</strong>。
+三重ループを使用してDPテーブルを更新する。つまり、DPテーブルの要素を更新するために、各頂点を経由する場合と経由しない場合の2つのパターンを試す</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -439,7 +438,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./cp_technic"
+            path: "./graph"
         },
         predefinedOutput: true
     }
@@ -458,20 +457,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="index.html"
+       href="bellman_ford.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">基礎テクニック</p>
+        <p class="prev-next-title">ベルマンフォード法</p>
       </div>
     </a>
     <a class="right-next"
-       href="vector.html"
+       href="ford_fulkerson.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">座標問題</p>
+        <p class="prev-next-title">Ford Fulkerson アルゴリズム(最大フロー問題)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
