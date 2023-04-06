@@ -23,6 +23,7 @@ parts:
           - file: graph/segment_tree
           - file: graph/dijkstra
           - file: graph/bellman_ford
+          - file: graph/floyd_warshall
           - file: graph/ford_fulkerson
 
       - file: dp/index
