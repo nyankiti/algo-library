@@ -12,6 +12,7 @@ parts:
           - file: cp_technic/vector
           - file: cp_technic/matrix
           - file: cp_technic/bitset
+          - file: cp_technic/combination
 
       - file: graph/index
         sections:
