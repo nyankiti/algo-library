@@ -8,6 +8,7 @@ parts:
     chapters:
       - file: cp_technic/index
         sections:
+          - file: cp_technic/solve_technic
           - file: cp_technic/bit_full_search
           - file: cp_technic/vector
           - file: cp_technic/matrix
